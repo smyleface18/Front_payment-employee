@@ -127,7 +127,7 @@ function PreviousPage(){
                                         class="p-4 transition-colors border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
                                         <p
                                             class="flex items-center justify-between gap-2 font-sans text-sm font-normal leading-none text-slate-500">
-                                            Función
+                                            Rol
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="2" stroke="currentColor" aria-hidden="true"
                                                 class="w-4 h-4">
@@ -140,7 +140,7 @@ function PreviousPage(){
                                         class="p-4 transition-colors  border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
                                         <p
                                             class="flex items-center justify-between gap-2 font-sans text-sm  font-normal leading-none text-slate-500">
-                                            Numero de identidad
+                                            Departamento
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="2" stroke="currentColor" aria-hidden="true"
                                                 class="w-4 h-4">
@@ -153,7 +153,7 @@ function PreviousPage(){
                                         class="p-4 transition-colors  border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
                                         <p
                                             class="flex items-center justify-between gap-2 font-sans text-sm  font-normal leading-none text-slate-500">
-                                            Pagos
+                                            valor del Pago
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="2" stroke="currentColor" aria-hidden="true"
                                                 class="w-4 h-4">

@@ -15,8 +15,9 @@ let PaginationData = ref({
 
     ],
     init: 0,
-    end: 5
+    end: 0
 });
+PaginationData.value.end = PaginationData.value.elements;
 
 const fetchEmployees = async () => {
     try {
@@ -30,6 +31,7 @@ const fetchEmployees = async () => {
         }
 
         employees.value = await response.json();
+        employees.value = [...employees.value].reverse()
     } catch (err) {
         error.value = err.message;
     }
@@ -44,7 +46,6 @@ const fetchEmployees = async () => {
 onMounted(fetchEmployees);
 
 function setDataPage() {
-    employees.value = [...employees.value].reverse()
     if (employees.value.length > 0) {
         PaginationData.value.NumberPage = Math.ceil(employees.value.length / PaginationData.value.elements);
     } else {
@@ -70,11 +71,12 @@ function NextPage(){
 
 function PreviousPage(){
     if (PaginationData.value.init > 0) {
-    PaginationData.value.init -= 5;
-    PaginationData.value.end -= 5;
+    PaginationData.value.init -= PaginationData.value.elements;
+    PaginationData.value.end -= PaginationData.value.elements;
     PaginationData.value.Page--;
     setDataPage()
     getSectionEmployee()
+    
     }
 }
 </script>

@@ -18,7 +18,7 @@ let paymentData = ref({
     }
 })
 
-console.log(props.idEmployee)
+
 function calulatorPayment() {
     if(hoursWorked.value <= simpleOvertime){
         return hoursWorked.value * props.valueHour;

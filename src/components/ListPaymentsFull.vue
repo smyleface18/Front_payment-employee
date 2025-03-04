@@ -27,6 +27,7 @@ const fetchEmployees = async () => {
         }
 
         Payments.value = await response.json();
+        Payments.value = [...Payments.value].reverse()
     } catch (err) {
         error.value = err.message;
     }
@@ -42,7 +43,6 @@ onMounted(fetchEmployees);
 
     
 function setDataPage() {
-    Payments.value = [...Payments.value].reverse()
     if (Payments.value.length > 0) {
         PaginationData.value.NumberPage = Math.ceil(Payments.value.length / PaginationData.value.elements);
     } else {

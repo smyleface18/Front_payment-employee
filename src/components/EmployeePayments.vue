@@ -65,7 +65,7 @@ onMounted(fetchEmployees)
                 </div>
             </div>
         </div>
-        <ListPaymentsEmployee class="w-3/4" v-if="!loading"  :payments="employee.payments" :valueHour="employee.category.salaryXhour" :idEmployee="ID_EMPLOYEE"></ListPaymentsEmployee>
+        <ListPaymentsEmployee v-if="!loading"  :payments="employee.payments" :valueHour="employee.category.salaryXhour" :idEmployee="ID_EMPLOYEE"></ListPaymentsEmployee>
 
     </div>
 

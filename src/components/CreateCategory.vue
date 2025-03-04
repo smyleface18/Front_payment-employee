@@ -33,8 +33,8 @@ async function registerEmployee(){
 </script>
 <template>
     <div class="flex flex-col justify-center items-center">
-            <h5 class="font-semibold text-2xl text-center py-2 text-slate-900">
-                Registrar empleado
+            <h5 class="font-semibold text-2xl text-center py-5 text-slate-900">
+                Registrar Cargo
             </h5>
             <form  @submit.prevent="registerEmployee" method="post" class="flex flex-col w-[60%] space-y-5 text-slate-900 font-medium justify-center">
                 <div class=" space-x-2 flex ">
