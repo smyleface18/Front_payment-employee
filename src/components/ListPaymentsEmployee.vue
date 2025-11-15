@@ -7,7 +7,6 @@ import RegisterPayment from './RegisterPayment.vue';
 const props = defineProps(["payments","valueHour","idEmployee"])
 
 
-
 let popup = ref(false);
 let PaginationData = ref({
     Page: 1,
@@ -67,7 +66,6 @@ getSectionEmployee()
         <div class="w-3/4 h-full flex items-center">
             <!-- component -->
             <div class="w-full ">
-
                 <div
                     class="relative flex flex-col w-full h-full text-slate-700 bg-white shadow-md rounded-xl bg-clip-border">
                     <div class="relative mx-4 mt-4 overflow-hidden text-slate-700 bg-white rounded-none bg-clip-border">

@@ -62,7 +62,7 @@ function NextPage(){
         PaginationData.value.end +=  PaginationData.value.elements;
         PaginationData.value.Page++;
         setDataPage()
-        getSectionEmployee()
+        getSectionCategories()
     }
 }
 

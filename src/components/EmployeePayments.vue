@@ -1,48 +1,56 @@
 <script setup>
-import { useRoute } from 'vue-router';
-import { onMounted, ref } from 'vue';
-import ListPaymentsEmployee from './ListPaymentsEmployee.vue';
-
+import { useRoute } from "vue-router";
+import { onMounted, ref } from "vue";
+import ListPaymentsEmployee from "./ListPaymentsEmployee.vue";
+import Modal from "./Modal.vue";
+import RegisterPayment from "./RegisterPayment.vue";
 
 const route = useRoute();
+const error = ref()
 const ID_EMPLOYEE = route.query.idEmployee;
 let employee = ref({
+    id: "",
+    identityNumber : "",
+    name : "",
+    lastname : "",
+    email : "",
+    img : "",
     category: {
-        salaryXhour: ""
+        salaryXhour: "",
     },
-    payments:[
-    ]
-})
+    payments: [],
+});
 let loading = ref(true);
+let popup = ref(false);
 
 const fetchEmployees = async () => {
     try {
-        const response = await fetch(`http://127.0.0.1:8080/Employee/Employee/${ID_EMPLOYEE}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" }
-        });
+        const response = await fetch(
+            `http://127.0.0.1:8080/Employee/Employee/${ID_EMPLOYEE}`,
+            {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            }
+        );
 
         if (!response.ok) {
             throw new Error(`Error HTTP: ${response.status}`);
         }
 
-        employee.value = await response.json(); 
-
+        employee.value = await response.json();
+       
     } catch (err) {
         error.value = err.message;
-    }finally{
-        loading.value = false
+    } finally {
+        loading.value = false;
     }
+};
 
-
-}
-onMounted(fetchEmployees)
-
-
+onMounted(fetchEmployees);
 </script>
 <template>
-    <div class="h-full  flex-col flex items-center justify-start">
-        <div class="w-3/4 bg-slate-800 h-2/5 flex flex-col items-center  text-white  space-y-5">
+    <div class="h-full flex-col flex items-center justify-start">
+        <div class="w-3/4 bg-slate-800 h-2/5 flex flex-col items-center text-white space-y-5 p-5 rounded-b-2xl">
             <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24">
                 <g fill="none" fill-rule="evenodd">
                     <path
@@ -53,20 +61,33 @@ onMounted(fetchEmployees)
             </svg>
             <div class="space-y-5">
                 <div class="flex space-x-5 justify-center">
-                    <p class="text-xl"><span class="font-semibold">Nombre: </span>{{ employee.name }}</p>
-                    <p class="text-xl"><span class="font-semibold">Apellidos: </span>{{ employee.lastname }}</p>
-                    <p class="text-xl"><span class="font-semibold"># identidad: </span>{{ employee.identityNumber }}</p>
+                    <p class="text-xl">
+                        <span class="font-semibold">Nombre: </span>{{ employee.name }}
+                    </p>
+                    <p class="text-xl">
+                        <span class="font-semibold">Apellidos: </span>{{ employee.lastname }}
+                    </p>
+                    <p class="text-xl">
+                        <span class="font-semibold"># identidad: </span>{{ employee.identityNumber }}
+                    </p>
                 </div>
                 <div class="flex space-x-5 justify-center">
-                    <p class="text-xl"><span class="font-semibold">Email: </span>{{ employee.email }}</p>
-                    <p class="text-xl"><span class="font-semibold">Rol: </span>{{
-                        employee.category.rol + "(" + employee.category.department+")" }}</p>
-                                            <p class="text-xl"><span class="font-semibold">Salario por hora: </span>{{ employee.category.salaryXhour.toLocaleString('en') }} $</p>
+                    <p class="text-xl">
+                        <span class="font-semibold">Email: </span>{{ employee.email }}
+                    </p>
+                    <p class="text-xl">
+                        <span class="font-semibold">Rol: </span>{{
+                            employee.category.rol + "(" + employee.category.department + ")"
+                        }}
+                    </p>
+                    <p class="text-xl">
+                        <span class="font-semibold">Salario por hora: </span>{{
+                            employee.category.salaryXhour.toLocaleString("en") }} $
+                    </p>
                 </div>
             </div>
         </div>
-        <ListPaymentsEmployee v-if="!loading"  :payments="employee.payments" :valueHour="employee.category.salaryXhour" :idEmployee="ID_EMPLOYEE"></ListPaymentsEmployee>
-
+        <ListPaymentsEmployee v-if="!(loading )" :payments="employee.payments"
+            :valueHour="employee.category.salaryXhour" :idEmployee="ID_EMPLOYEE"></ListPaymentsEmployee>
     </div>
-
 </template>
